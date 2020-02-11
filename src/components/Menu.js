@@ -3,7 +3,7 @@ import './Menu.css'
 
 function Menu(props) {
 
-    const items=props.menu.map( (item, id) => <li> <a onClick={() => props.scrollTo(id)} className={item.className}>{item.name}</a></li>)
+    const items=props.menu.map( (item, id) => <li className={item.className}> <a onClick={() => props.scrollTo(id)} className={item.className}>{item.name}</a></li>)
 
     return (
         <header>

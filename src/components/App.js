@@ -13,7 +13,8 @@ class App extends React.Component{
             menu: [
                 {name: "Главная", className: "active",ref: React.createRef()},
                 {name: "Обязанности", className: "", ref: React.createRef()},
-                {name: "Штрафы", className: "", ref: React.createRef()}
+                {name: "Штрафы", className: "", ref: React.createRef()},
+                {name: "Контакты", className: "right ", ref: React.createRef()}
             ]
         };
         this.scrollTo = this.scrollTo.bind(this);
@@ -37,6 +38,12 @@ class App extends React.Component{
                       <Punish/>
                   </div>
 
+                  <div ref = {this.state.menu[3].ref}>
+                      <p>
+                          alex.svdk@gmail.com
+                      </p>
+                  </div>
+
                   <Footer/>
               </div>
           </div>
@@ -46,8 +53,9 @@ class App extends React.Component{
   scrollTo(id){
         this.setState(oldstate => {
             const menu = oldstate.menu.slice();
-            menu.find(val => val.className==="active").className="";
-            menu[id].className="active";
+            const old = menu.find(val => val.className.includes("active"));
+            old.className = old.className.replace("active","");
+            menu[id].className+="active";
             menu[id].ref.current.scrollIntoView({
                 behavior: 'smooth',
                 block: 'start',
