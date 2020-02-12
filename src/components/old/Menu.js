@@ -28,7 +28,8 @@ class Menu extends React.Component{
     }
 
     componentDidMount() {
-        this.props.setOffset(this.href.current.clientHeight);
+        this.href.current.clientWidth>600 ?
+        this.props.setOffset(this.href.current.clientHeight) : this.props.setOffset(0);
     }
 
 

@@ -3,9 +3,6 @@ import './App.css';
 import Menu from "./old/Menu";
 import MyDiv from "./containers/MyDiv";
 import Home from "./old/Home";
-import Duty from "./old/Duty";
-import Punish from "./old/Punish";
-import Contacts from "./old/Contacts";
 
 class App extends React.Component{
     constructor(props) {
@@ -14,7 +11,7 @@ class App extends React.Component{
             menu: [
                 {name: "Главная", className: "active",ref: React.createRef(), bc: "#000000", child: <Home/>},
                 {name: "Обязанности", className: "", ref: React.createRef(), bc: "#140014" },
-                //{name: "Штрафы", className: "", ref: React.createRef(), bc: "#120003"},
+                {name: "Штрафы", className: "", ref: React.createRef(), bc: "#120003"},
                 {name: "Контакты", className: "right ", ref: React.createRef(), bc: "#001404"}
             ]
         };
