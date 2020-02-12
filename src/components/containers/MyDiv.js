@@ -7,10 +7,8 @@ class MyDiv extends React.Component {
         const { forwardedRef, title, backgroundColor} = this.props;
         return <div
             className="myDiv"
-            ref={forwardedRef}
-            style={{backgroundColor: backgroundColor}}
         >
-            {(title) && <h1>{title}</h1>}
+            {(title) && <h1 ref={forwardedRef} style={{backgroundColor: backgroundColor}}>{title}</h1>}
             {this.props.children}
         </div>
     }

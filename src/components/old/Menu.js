@@ -5,7 +5,6 @@ class Menu extends React.Component{
 
     constructor(props) {
         super(props);
-
         this.href = React.createRef()
     }
 

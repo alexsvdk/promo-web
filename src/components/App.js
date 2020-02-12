@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
-import Menu from "./old/Menu";
 import MyDiv from "./containers/MyDiv";
 import Home from "./old/Home";
+import MagicMenu from "./menu/MagicMenu";
 
 class App extends React.Component{
     constructor(props) {
@@ -23,8 +23,9 @@ class App extends React.Component{
           const {menu} = this.state;
           return (
               <div className="Back">
+                  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
                   <div className="App">
-                      <Menu scrollTo={this.scrollTo} menu={menu} setOffset={offset => this.menuOffset=offset}/>
+                      <MagicMenu scrollTo={this.scrollTo} menu={menu} setOffset={offset => this.menuOffset=offset}/>
                       {menu.map(item =>
                           <MyDiv
                               forwardedRef={item.ref}
@@ -45,7 +46,10 @@ class App extends React.Component{
             const old = menu.find(val => val.className.includes("active"));
             old.className = old.className.replace("active","");
             menu[id].className+="active";
+            console.log(menu[id].ref.current.offsetTop);
             window.scrollTo(0, menu[id].ref.current.offsetTop-this.menuOffset);
+
+            //window.scroll(0,menu[id].ref.current.offsetTop-this.menuOffset-window.scrollY);
             /*
             menu[id].ref.current.scrollIntoView({
                 behavior: 'smooth',
