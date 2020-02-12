@@ -1,0 +1,13 @@
+.myDiv {
+    min-height: 90vh;
+    background-color: black;
+    color: white;
+    margin: 0;
+    padding: 4px;
+}
+
+.myDiv h1 {
+    text-decoration: underline;
+    text-align: left;
+    padding: 8px 0 0 32px;
+}

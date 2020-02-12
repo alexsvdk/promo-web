@@ -1,53 +1,45 @@
 import React from 'react';
 import './App.css';
-import Menu from "./Menu";
-import Home from "./Home";
-import Footer from "./Footer";
-import Duty from "./Duty";
-import Punish from "./Punish";
+import Menu from "./old/Menu";
+import MyDiv from "./containers/MyDiv";
+import Home from "./old/Home";
+import Duty from "./old/Duty";
+import Punish from "./old/Punish";
+import Contacts from "./old/Contacts";
 
 class App extends React.Component{
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             menu: [
-                {name: "Главная", className: "active",ref: React.createRef()},
-                {name: "Обязанности", className: "", ref: React.createRef()},
-                {name: "Штрафы", className: "", ref: React.createRef()},
-                {name: "Контакты", className: "right ", ref: React.createRef()}
+                {name: "Главная", className: "active",ref: React.createRef(), bc: "#000000", child: <Home/>},
+                {name: "Обязанности", className: "", ref: React.createRef(), bc: "#140014" },
+                //{name: "Штрафы", className: "", ref: React.createRef(), bc: "#120003"},
+                {name: "Контакты", className: "right ", ref: React.createRef(), bc: "#001404"}
             ]
         };
-        this.scrollTo = this.scrollTo.bind(this);
 
+        this.scrollTo = this.scrollTo.bind(this);
+        this.menuOffset = 44;
     }
     render() {
-      return (
-          <div className="Back">
-              <div className="App">
-
-                  <Menu scrollTo={this.scrollTo} menu={this.state.menu}/>
-                  <div ref = {this.state.menu[0].ref}>
-                      <Home/>
+          const {menu} = this.state;
+          return (
+              <div className="Back">
+                  <div className="App">
+                      <Menu scrollTo={this.scrollTo} menu={menu} setOffset={offset => this.menuOffset=offset}/>
+                      {menu.map(item =>
+                          <MyDiv
+                              forwardedRef={item.ref}
+                              title={item.name}
+                              backgroundColor={item.bc}
+                      >
+                              {item.child}
+                          </MyDiv>
+                      )}
                   </div>
-
-                  <div ref = {this.state.menu[1].ref}>
-                      <Duty/>
-                  </div>
-
-                  <div ref = {this.state.menu[2].ref}>
-                      <Punish/>
-                  </div>
-
-                  <div ref = {this.state.menu[3].ref}>
-                      <p>
-                          alex.svdk@gmail.com
-                      </p>
-                  </div>
-
-                  <Footer/>
               </div>
-          </div>
-      );
+          );
   }
 
   scrollTo(id){
@@ -56,10 +48,14 @@ class App extends React.Component{
             const old = menu.find(val => val.className.includes("active"));
             old.className = old.className.replace("active","");
             menu[id].className+="active";
+            window.scrollTo(0, menu[id].ref.current.offsetTop-this.menuOffset);
+            /*
             menu[id].ref.current.scrollIntoView({
                 behavior: 'smooth',
                 block: 'start',
             });
+            */
+
             return {menu: menu}
         })
   }

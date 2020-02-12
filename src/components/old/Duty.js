@@ -1,6 +1,5 @@
 import React from "react";
 import './Duty.css'
-import promoman from "../img/promoman.jpg";
 
 function Duty(props) {
 return (<div className="duty">

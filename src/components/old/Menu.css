@@ -26,7 +26,7 @@ li a{
     text-align: center;
     display: inline-block;
     text-decoration: none;
-    padding: 14px 16px;
+    padding: 12px 14px;
 }
 
 li a:hover{
@@ -34,7 +34,7 @@ li a:hover{
 }
 
 li a.active{
-    background-color: red;
+    background-color: #c80006;
 }
 
 
